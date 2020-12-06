@@ -12,6 +12,9 @@ import {AuthService} from './services/auth.service';
 import { HomeComponent } from './components/pages/home/home.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
+import { RestaurantCardComponent } from './components/part/restaurant-card/restaurant-card.component';
+import { CarouselComponent } from './components/part/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FooterComponent,
     SignInComponent,
     SignUpComponent,
-    HomeComponent
+    HomeComponent,
+    RestaurantCardComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     BrowserAnimationsModule,
     MatChipsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ],
   providers: [
     AuthService

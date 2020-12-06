@@ -1,4 +1,9 @@
 header {
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
   box-sizing: border-box;
   background-color: #fff;
   color: #fff;
@@ -15,6 +20,8 @@ header {
 
     .right-content {
       width: 160px;
+      outline: none;
+      cursor: pointer;
 
       img {
         width: 100%;
@@ -22,6 +29,10 @@ header {
     }
 
     .left-content {
+      width: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       box-sizing: border-box;
       padding: 5px;
 
@@ -30,8 +41,17 @@ header {
         padding: 7px 15px;
         height: 30px;
         border-radius: 22px;
-        border: none;
         cursor: pointer;
+        background-color: transparent;
+        border: 1px solid #e8e8e8;
+        transition: all 100ms ease-in-out;
+        transform-origin: center;
+
+        &:hover {
+          background-color: rgb(252, 224, 0);
+          border: 1px solid transparent;
+          font-weight: bold;
+        }
       }
     }
   }
