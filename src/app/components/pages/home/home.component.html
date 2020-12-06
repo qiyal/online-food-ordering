@@ -1,0 +1,41 @@
+<main>
+  <div class="wrapper">
+
+    <div class="content">
+
+      <div class="tag-menu">
+
+        <mat-chip-list aria-label="food selection">
+          <mat-chip [selected]="isSelect('all')" (click)="setSelect('all')">All</mat-chip>
+          <mat-chip [selected]="isSelect('burgers')" (click)="setSelect('burgers')">Burgers</mat-chip>
+          <mat-chip [selected]="isSelect('sushi')" (click)="setSelect('sushi')">Sushi</mat-chip>
+          <mat-chip [selected]="isSelect('pizza')" (click)="setSelect('pizza')">Pizza</mat-chip>
+        </mat-chip-list>
+
+      </div>
+
+      <div class="search-box">
+        <input type="text" [(ngModel)]="search" placeholder="Название, кухня или блюдо">
+      </div>
+
+      <div class="food-flex-box">
+
+        <div class="card">
+          <div class="content">
+
+            <div class="img-part">
+              <img src="assets/images/food/card-photo/food1.jpg" alt="Food photo">
+            </div>
+
+            <div class="footer-part"></div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+</main>

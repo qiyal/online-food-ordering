@@ -1,0 +1,54 @@
+main {
+
+  .wrapper {
+    box-sizing: border-box;
+    margin: 10px 50px;
+
+    .content {
+      box-sizing: border-box;
+      border: 1px solid #eee;
+      border-radius: 5px;
+
+      .tag-menu {
+        padding: 20px 100px;
+        border-bottom: 1px solid #eee;
+        box-sizing: border-box;
+      }
+
+      .search-box {
+        box-sizing: border-box;
+        padding: 25px 100px;
+
+        input {
+          box-sizing: border-box;
+          padding: 15px 25px;
+          width: 100%;
+          border: 1px solid #e8e8e8;
+          border-radius: 5px;
+          font-size: 16px;
+        }
+      }
+
+      .food-flex-box {
+
+      }
+    }
+  }
+}
+
+.card {
+
+  .content {
+
+    .img-part {
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.is-select {
+  color: #ffe245;
+}

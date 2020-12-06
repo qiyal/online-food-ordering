@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "nico@gmail.com",
+      "phoneNumber": "+7-705-262-7972",
+      "firstName": "Yerbolat",
+      "lastName": "Pazyl",
+    }
+  ]
+}
