@@ -46,6 +46,7 @@ header {
         border: 1px solid #e8e8e8;
         transition: all 100ms ease-in-out;
         transform-origin: center;
+        outline: none;
 
         &:hover {
           background-color: rgb(252, 224, 0);
