@@ -29,7 +29,7 @@ header {
     }
 
     .left-content {
-      width: 300px;
+      width: 240px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -52,6 +52,25 @@ header {
           background-color: rgb(252, 224, 0);
           border: 1px solid transparent;
           font-weight: bold;
+        }
+      }
+
+      .menu-btn {
+        margin: 0;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        //cursor: pointer;
+        //border: 1px solid #e8e8e8;
+
+        img {
+          width: 100%;
+          object-fit: cover;
+        }
+
+        &:hover {
+          transform: scale(1.025);
         }
       }
     }

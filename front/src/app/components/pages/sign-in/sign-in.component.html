@@ -3,10 +3,10 @@
   <div class="main">
     <p class="sign" align="center">Sign In</p>
 
-    <form>
-      <input class="un " type="text" align="center" placeholder="Phone number or email">
-      <input class="pass" type="password" align="center" placeholder="Password">
-      <button class="submit">Sign in</button>
+    <form [formGroup]="form">
+      <input class="un " type="text" align="center" placeholder="Phone number or email" formControlName="email">
+      <input class="pass" type="password" align="center" placeholder="Password" formControlName="password">
+      <button class="submit" type="submit"  (click)="login()">Sign in</button>
       <p class="forgot" align="center"><a routerLink="/sign-up">sign up</a></p>
     </form>
 

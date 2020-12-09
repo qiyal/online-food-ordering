@@ -10,6 +10,7 @@ import {PaymentsComponent} from './components/pages/me/payments/payments.compone
 import {AddressesComponent} from './components/pages/me/addresses/addresses.component';
 import {OrderHistoryComponent} from './components/pages/me/order-history/order-history.component';
 import {MyPromoCodesComponent} from './components/pages/me/my-promo-codes/my-promo-codes.component';
+import {ProfilePageGuard} from "./guard/profile-page.guard";
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   {
     path: 'me',
     component: MeComponent,
+    canActivate: [ProfilePageGuard],
     children: [
       {
         path: 'personal-info',

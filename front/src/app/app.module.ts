@@ -22,6 +22,13 @@ import { PaymentsComponent } from './components/pages/me/payments/payments.compo
 import { AddressesComponent } from './components/pages/me/addresses/addresses.component';
 import { OrderHistoryComponent } from './components/pages/me/order-history/order-history.component';
 import { MyPromoCodesComponent } from './components/pages/me/my-promo-codes/my-promo-codes.component';
+import { HttpClientModule } from '@angular/common/http';
+import {MatMenuModule} from "@angular/material/menu";
+import {CustomerService} from "./services/customer.service";
+import { ProfileInfoEditComponent } from './components/dialogs/profile-info-edit/profile-info-edit.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -38,7 +45,8 @@ import { MyPromoCodesComponent } from './components/pages/me/my-promo-codes/my-p
     PaymentsComponent,
     AddressesComponent,
     OrderHistoryComponent,
-    MyPromoCodesComponent
+    MyPromoCodesComponent,
+    ProfileInfoEditComponent
   ],
   imports: [
     BrowserModule,
@@ -48,10 +56,16 @@ import { MyPromoCodesComponent } from './components/pages/me/my-promo-codes/my-p
     ReactiveFormsModule,
     FormsModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    HttpClientModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    CustomerService
   ],
   bootstrap: [AppComponent]
 })

@@ -5,27 +5,27 @@
     <div class="l">
 
       <div class="img-body">
-        <img src="assets/images/users/avatar/user1.jpg" alt="Profile avatar image">
+        <img [src]="customer.urlAvatar" alt="Profile avatar image">
       </div>
 
       <div class="btn-body">
-        <button>edit</button>
+        <button (click)="openDialog()">edit</button>
       </div>
 
     </div>
 
     <div class="r">
       <div class="full-name">
-        Nico Tom
+        {{customer.firstName + ' ' + customer.lastName}}
       </div>
       <div class="other-info">
         <div class="info">
           <p class="p-bold">Email:</p>
-          <p class="p-simple">nico@gmail.com</p>
+          <p class="p-simple">{{customer.email}}</p>
         </div>
         <div class="info">
           <p class="p-bold">Phone number:</p>
-          <p class="p-simple">+77052627972</p>
+          <p class="p-simple">{{customer.phoneNumber}}</p>
         </div>
       </div>
     </div>
