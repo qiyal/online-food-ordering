@@ -1,64 +1,53 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from "rxjs";
-import {CustomerService} from "./customer.service";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import {Customer} from '../models/customer';
+import {AvatarImageService} from './avatar-image.service';
 
 @Injectable()
 export class AuthService {
 
-  api = '/login';
+  api = '/customers';
   auth = false;
   authUserLogin: string;
-  // authUser: Customer = null;
+  authUserId: number;
 
   constructor(
     private http: HttpClient,
-    private customerService: CustomerService,
+    private avatarImageService: AvatarImageService
   ) {
     this.init();
   }
 
   init() {
-    let login = localStorage.getItem('userLogin');
-
+    const login = localStorage.getItem('userLogin');
+    const id = localStorage.getItem('userId');
     if (login) {
-      this.setUserLogin(login);
+      this.setUserLogin(login, +id);
     }
-  }
-
-  setUserLogin(value: string) {
-    localStorage.setItem('userLogin', value);
-    this.auth = true;
-    this.authUserLogin = value;
-    this.mappingUserData(value);
   }
 
   isAuth(): boolean {
     return this.auth;
   }
 
-  login(data): Observable<boolean> {
-    return this.http.post<boolean>(this.api, data);
+  setUserLogin(login: string, id: number) {
+    localStorage.setItem('userLogin', login);
+    localStorage.setItem('userId', id + '');
+    this.auth = true;
+    this.authUserLogin = login;
+    this.authUserId = id;
+    this.avatarImageService.setUserImage(id);
+  }
+
+  login(data): Observable<Customer> {
+    return this.http.get<Customer>(this.api + `?email=${data.email}&password=${data.password}`);
   }
 
   logout() {
     this.auth = false;
-    // this.authUserId = null;
     this.authUserLogin = null;
+    this.authUserId = null;
     localStorage.clear();
-  }
-
-  mappingUserData(login: string)  {
-    // this.customerService.getCustomerMapData(login).subscribe(res => {
-    //   const map: Map<string, string> = res;
-    //   // this.authUser.urlAvatar = res.get('urlAvatar');
-    //   // this.authUser.lastName = res.get('lastName');
-    //   // this.authUser.firstName = res.get('firstName');
-    //   // this.authUser.email = res.get('email');
-    //   // this.authUser = res;
-    //   this.authUser.firstName="dsds";
-    //   console.log(res);
-    //   console.log(this.authUser);
-    // });
   }
 }

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomerService} from "../../../services/customer.service";
 import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
+import {Customer} from '../../../models/customer';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,7 +12,7 @@ import {Router} from "@angular/router";
 })
 export class SignUpComponent implements OnInit {
   form: FormGroup;
-  errorMessage: string;
+  passwordStatus: boolean;
 
   constructor(
     private customerService: CustomerService,
@@ -25,42 +26,29 @@ export class SignUpComponent implements OnInit {
 
   createForm() {
     this.form = new FormGroup({
-
-      email: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
+      confirmPassword: new FormControl('', [Validators.required]),
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl(''),
-      confirmPassword: new FormControl('', [Validators.required]),
       phoneNumber: new FormControl('', [Validators.required]),
       genre: new FormControl(),
-      cashback: new FormControl(0),
-      urlAvatar: new FormControl('')
+      cashBack: new FormControl(0),
+      urlAvatar: new FormControl('assets/images/users/avatar/user0.jpg')
     });
   }
 
   createCustomer() {
-    if (this.form.invalid) {
-      this.errorMessage = 'Invalid, check form!';
-    } else if (this.form.get('password').value !== this.form.get('confirmPassword').value) {
-      this.errorMessage = 'Invalid, confirm password!';
-    } else {
-      this.form.removeControl('confirmPassword');
-
+    if (this.form.valid && this.passwordsValid()) {
       this.customerService.createNewCustomer(this.form.getRawValue()).subscribe(res => {
-        const status = res;
-
-        console.log(res);
-
-        if (status === 'Created') {
-          this.errorMessage = '';
-          this.auth.setUserLogin(this.form.get('email').value);
-          this.router.navigate(['me/personal-info']);
-          console.log("Navigate");
-        } else {
-          this.errorMessage = res;
-        }
+        const customer: Customer = res;
+        this.auth.setUserLogin(customer.email, customer.id);
+        this.router.navigate(['me/personal-info']);
       });
     }
   }
 
+  passwordsValid() {
+     return this.form.get('password').value === this.form.get('confirmPassword').value;
+  }
 }

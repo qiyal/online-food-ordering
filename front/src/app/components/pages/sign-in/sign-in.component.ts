@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-// import {AuthService} from '../../../services/auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from "../../../services/auth.service";
-import {Router} from "@angular/router";
+import {AuthService} from '../../../services/auth.service';
+import {Router} from '@angular/router';
+import {Customer} from '../../../models/customer';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 })
 export class SignInComponent implements OnInit {
   form: FormGroup;
+  invalidData = false;
 
   constructor(
     private authService: AuthService,
@@ -29,14 +30,23 @@ export class SignInComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.form.getRawValue()).subscribe(res => {
-      const status = res;
+    if (this.form.valid) {
+      this.form.disable();
 
-      if (status) {
-        this.authService.setUserLogin(this.form.get('email').value);
-        this.router.navigate(['/me/personal-info']);
-      }
-    });
+      this.authService.login(this.form.getRawValue()).subscribe(res => {
+        const customer: Customer = res[0];
+
+        if (customer) {
+          this.authService.setUserLogin(res[0].email, res[0].id);
+          this.router.navigate(['/me/personal-info']);
+        } else {
+          this.invalidData = true;
+        }
+        this.form.enable();
+      });
+    } else {
+      this.invalidData = true;
+    }
   }
 
 }

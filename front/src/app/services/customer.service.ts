@@ -15,15 +15,15 @@ export class CustomerService {
     return this.http.get<Customer>(this.api + `/${login}`);
   }
 
-  getCustomerMapData(login: string): Observable<Map<string, string>> {
-    return this.http.get<Map<string, string>>(this.api + `/map?login=${login}`);
+  getCustomerById(id: number): Observable<Customer> {
+    return this.http.get<Customer>(this.api + `/${id}`);
   }
 
-  updateCustomerInfoFull(login: string, customer: Customer): Observable<Customer> {
-    return this.http.put<Customer>(this.api + `/${login}`, customer);
+  updateCustomerInfoFull(id: string, customer: Customer): Observable<Customer> {
+    return this.http.put<Customer>(this.api + `/${id}`, customer);
   }
 
-  createNewCustomer(customer: any): Observable<string> {
-    return this.http.post<string>(this.api + `/create`, customer);
+  createNewCustomer(customer: any): Observable<any> {
+    return this.http.post<any>(this.api, customer);
   }
 }

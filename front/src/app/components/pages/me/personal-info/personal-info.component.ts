@@ -4,6 +4,7 @@ import {AuthService} from "../../../../services/auth.service";
 import {CustomerService} from "../../../../services/customer.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ProfileInfoEditComponent} from "../../../dialogs/profile-info-edit/profile-info-edit.component";
+import {AvatarImageService} from '../../../../services/avatar-image.service';
 
 @Component({
   selector: 'app-personal-info',
@@ -16,7 +17,8 @@ export class PersonalInfoComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private customerService: CustomerService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private avatarImageService: AvatarImageService
   ) { }
 
   ngOnInit(): void {
@@ -24,8 +26,9 @@ export class PersonalInfoComponent implements OnInit {
   }
 
   getCustomer() {
-    this.customerService.getCustomerByLogin(this.auth.authUserLogin).subscribe(res => {
+    this.customerService.getCustomerById(this.auth.authUserId).subscribe(res => {
       this.customer = res;
+      console.log(this.customer);
     });
   }
 
@@ -36,9 +39,9 @@ export class PersonalInfoComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.customerService.updateCustomerInfoFull(result.customer.email, result.customer).subscribe(res => {
+        this.customerService.updateCustomerInfoFull(result.customer.id, result.customer).subscribe(res => {
           this.customer = res;
-          console.log("Update date");
+          this.avatarImageService.fullName = res.firstName + ' ' + res.lastName;
         });
       } else {
         this.getCustomer();

@@ -1,12 +1,30 @@
 {
-  "users": [
+  "customers": [
     {
       "id": 1,
       "email": "nico@gmail.com",
       "password": "12345",
-      "phoneNumber": "77052627972",
       "firstName": "Yerbolat",
-      "lastName": "Pazyl"
+      "lastName": "Pazyl",
+      "phoneNumber": "77052627972",
+      "genre": "male",
+      "cashBack": 0,
+      "urlAvatar": "assets/images/users/avatar/user1.jpg"
+    },
+    {
+      "email": "pazyl@gmail.com",
+      "password": "123",
+      "confirmPassword": "123",
+      "firstName": "Nico",
+      "lastName": "",
+      "phoneNumber": "87081233212",
+      "genre": null,
+      "cashBack": 0,
+      "urlAvatar": "assets/images/users/avatar/user0.jpg",
+      "id": 2
     }
+  ],
+  "cards": [
+
   ]
 }

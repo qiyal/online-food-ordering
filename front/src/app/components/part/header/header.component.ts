@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from "../../../services/auth.service";
+import {AuthService} from '../../../services/auth.service';
+import {AvatarImageService} from '../../../services/avatar-image.service';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +9,21 @@ import {AuthService} from "../../../services/auth.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  userImageUrl: string;
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private avatarImageService: AvatarImageService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
+  getImage(): string {
+    return this.avatarImageService.urlAvatar;
+  }
+
+  getFullName(): string {
+    return this.avatarImageService.fullName;
   }
 
   isShow(): boolean {
@@ -33,10 +40,6 @@ export class HeaderComponent implements OnInit {
 
   navToProfile() {
     this.router.navigate(['/me/personal-info']);
-  }
-
-  getAvatarUrl() {
-    // console.log(this.authService.authUser.firstName);
   }
 
   logout() {
